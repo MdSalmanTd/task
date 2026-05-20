@@ -1,50 +1,40 @@
-# Welcome to your Expo app 👋
+# E-commerce Product Catalog
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Expo SDK 54 React Native app for browsing DummyJSON products, filtering and sorting the catalog, viewing product details, and managing an offline wishlist.
 
-## Get started
-
-1. Install dependencies
-
-   ```bash
-   npm install
-   ```
-
-2. Start the app
-
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+## Setup
 
 ```bash
-npm run reset-project
+npm install
+npm run start
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+Then open the app with Expo Go, an emulator, or a development build from the Expo CLI output.
 
-## Learn more
+## Features
 
-To learn more about developing your project with Expo, look at the following resources:
+- Product catalog with image, title, category, price, rating, and availability.
+- Async product fetching from `https://dummyjson.com/products`.
+- Infinite scrolling, pull to refresh, skeleton loading, empty states, and error UI.
+- Debounced search, category filters, price sorting, and grid/list toggle.
+- Product details screen using `app/products/[id].tsx`.
+- Persisted wishlist with instant add/remove syncing across screens.
+- Settings screen for dark mode, grid view, clear wishlist, and static preferences.
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+## Redux Architecture
 
-## Join the community
+- `lib/store.ts` configures Redux Toolkit and Redux Persist.
+- `lib/productsSlice.ts` owns normalized product entities, async thunks, pagination state, category/search/sort filters, and memoized selectors.
+- `lib/wishlistSlice.ts` persists wishlist product IDs and derives visible wishlist products from the normalized product cache.
+- `lib/preferencesSlice.ts` persists theme and grid/list display preferences.
+- `lib/hooks.ts` provides typed `useAppDispatch` and `useAppSelector` helpers.
 
-Join our community of developers creating universal apps.
+Persisted state is limited to `wishlist` and `preferences`; product data is cached in memory for the session and refetched on launch.
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## Optimization Notes
+
+- Product state uses `createEntityAdapter` for normalized storage.
+- Catalog filtering and sorting use memoized selectors.
+- Product cards and wishlist rows use `React.memo`.
+- FlatList uses stable keys, limited render batches, windowing, and `removeClippedSubviews`.
+- Search input is debounced before updating global Redux state.

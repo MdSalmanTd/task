@@ -1,5 +1,30 @@
-
 import type { ImageSourcePropType } from "react-native";
+
+export type SortOrder = "none" | "price-asc" | "price-desc" | "rating" | "name";
+export type ThemeMode = "light" | "dark";
+
+export interface Product {
+    id: number;
+    title: string;
+    description: string;
+    category: string;
+    price: number;
+    discountPercentage: number;
+    rating: number;
+    stock: number;
+    brand?: string;
+    sku?: string;
+    thumbnail: string;
+    images: string[];
+    availabilityStatus?: string;
+}
+
+export interface ProductsResponse {
+    products: Product[];
+    total: number;
+    skip: number;
+    limit: number;
+}
 
 declare global {
     interface AppTab {
@@ -11,46 +36,6 @@ declare global {
     interface TabIconProps {
         focused: boolean;
         icon: ImageSourcePropType;
-    }
-
-    interface Subscription {
-        id: string;
-        icon: ImageSourcePropType;
-        name: string;
-        plan?: string;
-        category?: string;
-        paymentMethod?: string;
-        status?: string;
-        startDate?: string;
-        price: number;
-        currency?: string;
-        billing: string;
-        frequency?: string;
-        renewalDate?: string;
-        color?: string;
-    }
-
-    interface SubscriptionCardProps extends Omit<Subscription, "id"> {
-        expanded: boolean;
-        onPress: () => void;
-        onCancelPress?: () => void;
-        isCancelling?: boolean;
-    }
-
-    interface UpcomingSubscription {
-        id: string;
-        icon: ImageSourcePropType;
-        name: string;
-        price: number;
-        currency?: string;
-        daysLeft: number;
-    }
-
-    interface UpcomingSubscriptionCardProps
-        extends Omit<UpcomingSubscription, "id"> {}
-
-    interface ListHeadingProps {
-        title: string;
     }
 }
 
