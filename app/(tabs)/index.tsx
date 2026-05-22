@@ -1,22 +1,25 @@
 import { colors, components } from "@/constants/theme";
-import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import {
-  selectGridView,
-  selectThemeMode,
-  toggleGridView,
-  toggleThemeMode,
-} from "@/lib/preferencesSlice";
+    selectGridView,
+    selectThemeMode,
+    toggleGridView,
+    toggleThemeMode,
+} from "@/store/slices/preferencesSlice";
 import {
-  fetchCategories,
-  fetchProducts,
-  selectProductsMeta,
-  selectVisibleProducts,
-  setSearchQuery,
-  setSelectedCategory,
-  setSortOrder,
-} from "@/lib/productsSlice";
-import { selectWishlistIds, toggleWishlistItem } from "@/lib/wishlistSlice";
-import type { Product, SortOrder } from "@/type";
+    fetchCategories,
+    fetchProducts,
+    selectProductsMeta,
+    selectVisibleProducts,
+    setSearchQuery,
+    setSelectedCategory,
+    setSortOrder,
+} from "@/store/slices/productsSlice";
+import {
+    selectWishlistIds,
+    toggleWishlistItem,
+} from "@/store/slices/wishlistSlice";
+import type { Product, SortOrder } from "@/types/catalog";
 import { Ionicons } from "@expo/vector-icons";
 import { clsx } from "clsx";
 import { Image as ExpoImage } from "expo-image";
@@ -24,15 +27,15 @@ import { router } from "expo-router";
 import { styled } from "nativewind";
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
-  ActivityIndicator,
-  FlatList,
-  type LayoutChangeEvent,
-  Modal,
-  Pressable,
-  RefreshControl,
-  Text,
-  TextInput,
-  View,
+    ActivityIndicator,
+    FlatList,
+    type LayoutChangeEvent,
+    Modal,
+    Pressable,
+    RefreshControl,
+    Text,
+    TextInput,
+    View,
 } from "react-native";
 import { SafeAreaView as RNSafeAreaView } from "react-native-safe-area-context";
 

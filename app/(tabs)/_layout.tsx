@@ -1,5 +1,6 @@
-import { tabs } from "@/constants/data";
 import { colors, components } from "@/constants/theme";
+import { tabs } from "@/data/tabs";
+import type { TabIconProps } from "@/types/navigation";
 import { clsx } from "clsx";
 import { Image as ExpoImage } from "expo-image";
 import { Tabs } from "expo-router";

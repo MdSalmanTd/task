@@ -1,8 +1,14 @@
 import { colors, components } from "@/constants/theme";
-import { useAppDispatch, useAppSelector } from "@/lib/hooks";
-import { selectThemeMode } from "@/lib/preferencesSlice";
-import { fetchProductById, selectProductById } from "@/lib/productsSlice";
-import { selectIsWishlisted, toggleWishlistItem } from "@/lib/wishlistSlice";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { selectThemeMode } from "@/store/slices/preferencesSlice";
+import {
+    fetchProductById,
+    selectProductById,
+} from "@/store/slices/productsSlice";
+import {
+    selectIsWishlisted,
+    toggleWishlistItem,
+} from "@/store/slices/wishlistSlice";
 import { Ionicons } from "@expo/vector-icons";
 import { clsx } from "clsx";
 import { Image as ExpoImage } from "expo-image";
@@ -10,11 +16,11 @@ import { router, useLocalSearchParams } from "expo-router";
 import { styled } from "nativewind";
 import { useEffect } from "react";
 import {
-  ActivityIndicator,
-  Pressable,
-  ScrollView,
-  Text,
-  View,
+    ActivityIndicator,
+    Pressable,
+    ScrollView,
+    Text,
+    View,
 } from "react-native";
 import { SafeAreaView as RNSafeAreaView } from "react-native-safe-area-context";
 

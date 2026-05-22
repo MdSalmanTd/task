@@ -1,28 +1,28 @@
 import { createSlice } from "@reduxjs/toolkit";
-import type { ThemeMode } from "@/type";
-import type { RootState } from "./store";
+import type { ThemeMode } from "@/types/catalog";
+import type { RootState } from "../store";
 
 type PreferencesState = {
-    themeMode: ThemeMode;
-    gridView: boolean;
+  themeMode: ThemeMode;
+  gridView: boolean;
 };
 
 const initialState: PreferencesState = {
-    themeMode: "light",
-    gridView: true,
+  themeMode: "light",
+  gridView: true,
 };
 
 const preferencesSlice = createSlice({
-    name: "preferences",
-    initialState,
-    reducers: {
-        toggleThemeMode(state) {
-            state.themeMode = state.themeMode === "light" ? "dark" : "light";
-        },
-        toggleGridView(state) {
-            state.gridView = !state.gridView;
-        },
+  name: "preferences",
+  initialState,
+  reducers: {
+    toggleThemeMode(state) {
+      state.themeMode = state.themeMode === "light" ? "dark" : "light";
     },
+    toggleGridView(state) {
+      state.gridView = !state.gridView;
+    },
+  },
 });
 
 export const selectThemeMode = (state: RootState) => state.preferences.themeMode;

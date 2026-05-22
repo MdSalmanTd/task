@@ -1,13 +1,16 @@
 import { colors, components } from "@/constants/theme";
-import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import {
-  selectGridView,
-  selectThemeMode,
-  toggleGridView,
-  toggleThemeMode,
-} from "@/lib/preferencesSlice";
-import { selectAllProducts } from "@/lib/productsSlice";
-import { clearWishlist, selectWishlistCount } from "@/lib/wishlistSlice";
+    selectGridView,
+    selectThemeMode,
+    toggleGridView,
+    toggleThemeMode,
+} from "@/store/slices/preferencesSlice";
+import { selectAllProducts } from "@/store/slices/productsSlice";
+import {
+    clearWishlist,
+    selectWishlistCount,
+} from "@/store/slices/wishlistSlice";
 import { Ionicons } from "@expo/vector-icons";
 import { clsx } from "clsx";
 import { styled } from "nativewind";

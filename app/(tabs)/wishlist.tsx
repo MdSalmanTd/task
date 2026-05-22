@@ -1,13 +1,13 @@
 import { colors, components } from "@/constants/theme";
-import { useAppDispatch, useAppSelector } from "@/lib/hooks";
-import { selectThemeMode } from "@/lib/preferencesSlice";
-import { fetchProductById } from "@/lib/productsSlice";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { selectThemeMode } from "@/store/slices/preferencesSlice";
+import { fetchProductById } from "@/store/slices/productsSlice";
 import {
-  removeWishlistItem,
-  selectWishlistIds,
-  selectWishlistProducts,
-} from "@/lib/wishlistSlice";
-import type { Product } from "@/type";
+    removeWishlistItem,
+    selectWishlistIds,
+    selectWishlistProducts,
+} from "@/store/slices/wishlistSlice";
+import type { Product } from "@/types/catalog";
 import { Ionicons } from "@expo/vector-icons";
 import { clsx } from "clsx";
 import { Image as ExpoImage } from "expo-image";
